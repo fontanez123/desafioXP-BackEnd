@@ -8,5 +8,6 @@ const router = express.Router();
 
 router.get('/:id', clientes.getById);
 router.post('/deposito', validacaoDeposito, transacoesConta.deposito);
+router.post('/saque', transacoesConta.saque);
 
 module.exports = router;
