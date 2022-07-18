@@ -14,6 +14,7 @@ const comprarAtivos = async ({ idCliente, idAtivo, quantidade }) => {
     const valorTotalAtivo = await valorAtivo(idAtivo, quantidade);
 
     await clientesModel.diminuirSaldo(idCliente, valorTotalAtivo);
+    await ativosModel.diminuirQtdeDeAtivos(idAtivo, quantidade);
 
     return operacao;
 };

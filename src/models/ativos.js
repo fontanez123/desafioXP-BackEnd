@@ -16,7 +16,15 @@ const getAll = async () => {
     return ativo[0];
 }
 
+const diminuirQtdeDeAtivos = async(id, quantidade) => {
+  await connection.execute(
+    `UPDATE XPInc.ativos SET quantidade = quantidade - ?
+    WHERE id = ?;`, [quantidade, id]
+  );
+};
+
 module.exports = { 
     getAll,
     getById,
+    diminuirQtdeDeAtivos,
 };
