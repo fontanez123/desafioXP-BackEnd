@@ -1,11 +1,13 @@
 const express = require('express');
 const ativosRouter = require('./routes/ativos');
+const contaRouter = require('./routes/conta');
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/ativos', ativosRouter);
+app.use('/conta', contaRouter);
 
 app.get('/', (_req, res) => {
   res.send('testando');
