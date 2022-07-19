@@ -9,6 +9,16 @@ const validacaoQtdeAtivos = async (req, res, next) => {
         return res.status(400).json({ message });
     };
 
+    if(quantidade <= 0) {
+        const message = 'A quantidade de ativos não pode ser negativa ou igual a zero.';
+        return res.status(400).json({ message });
+    }
+
+    if(typeof quantidade !== 'number') {
+        const message = 'A quantidade precisa ser um número';
+        return res.status(400).json({ message });
+    };
+
 
     next();
 };
