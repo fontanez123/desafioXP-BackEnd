@@ -1,3 +1,5 @@
+const clientesModel = require('../models/clientes');
+
 const nome = (req, res, next) => {
     const { nome } = req.body;
 
@@ -32,8 +34,18 @@ const email = (req, res, next) => {
     next();
 };
 
+const clienteExiste = async (req, res, next) => {
+    const { email } = req.body;    
+    const emailV = await clientesModel.findByEmail(email);
+
+    if (emailV) return res.status(409).json({ message: 'Usuário já cadastrado' });
+
+    next();
+};
+
 module.exports = {
     nome,
     senha,
     email,
+    clienteExiste,
 }; 

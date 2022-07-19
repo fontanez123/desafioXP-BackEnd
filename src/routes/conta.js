@@ -15,6 +15,7 @@ router.post('/',
 validacaoCriarNovoCliente.nome,
 validacaoCriarNovoCliente.senha,
 validacaoCriarNovoCliente.email,
+validacaoCriarNovoCliente.clienteExiste,
 clientes.novoCliente);
 
 router.get('/:id', clientes.getById);
