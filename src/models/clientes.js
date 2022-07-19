@@ -8,6 +8,14 @@ const getById = async(id) => {
   return cliente[0];
 };
 
+const login = async(email, senha) => {
+  const [cliente] = await connection.execute(
+    'SELECT email, senha FROM XPInc.clientes WHERE email = ? AND senha = ?;', [email, senha]
+    );
+
+  return cliente[0];
+};
+
 const aumentarSaldo = async(id, valor) => {
   await connection.execute(
     `UPDATE XPInc.clientes SET saldo = saldo + ?
@@ -26,4 +34,5 @@ module.exports = {
     getById,
     aumentarSaldo,
     diminuirSaldo,
+    login,
 };

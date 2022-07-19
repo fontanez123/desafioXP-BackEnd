@@ -7,9 +7,11 @@ const validacaoDeposito = require('../middlewares/validacaoDeposito');
 const validacaoSaque = require('../middlewares/validacaoSaque');
 const validacaoIds = require('../middlewares/validacaoIds');
 const validacaoCliente = require('../middlewares/validacaoCliente');
+const validacaoLogin = require('../middlewares/validacaoLogin');
 
 const router = express.Router();
 
+router.post('/', validacaoLogin, clientes.login);
 router.get('/:id', clientes.getById);
 router.get('/ativos/:idCliente',
 validacaoCliente.clienteExiste,
