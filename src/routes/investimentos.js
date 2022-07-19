@@ -14,6 +14,10 @@ validacaoComprar,
 validacaoQtdeAtivos,
 transacoesAtivos.comprarAtivos
 );
-router.post('/vender', transacoesAtivos.venderAtivos);
+router.post('/vender',
+validacaoIds.cliente,
+validacaoIds.ativo,
+transacoesAtivos.venderAtivos
+);
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const cliente = (req, res, next) => {
     const { idCliente } = req.body;
 
-    if(!idCliente) {
-        const message = 'O campo idCliente é obrigatório';
+    if(!idCliente || idCliente <= 0) {
+        const message = 'O campo idCliente é obrigatório ou precisa ser um número maior que 0';
         return res.status(400).json({ message });
     };
 
@@ -17,8 +17,8 @@ const cliente = (req, res, next) => {
 const ativo = (req, res, next) => {
     const { idAtivo } = req.body;
 
-    if(!idAtivo) {
-        const message = 'O campo idAtivo é obrigatório';
+    if(!idAtivo || idAtivo <= 0) {
+        const message = 'O campo idAtivo é obrigatório ou precisa ser um número maior que 0';
         return res.status(400).json({ message });
     };
 
