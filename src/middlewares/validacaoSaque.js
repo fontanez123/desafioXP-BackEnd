@@ -14,6 +14,11 @@ const validacaoSaque = async (req, res, next) => {
         return res.status(400).json({ message });
     }
 
+    if(typeof valor !== 'number') {
+        const message = 'O valor precisa ser um número';
+        return res.status(400).json({ message });
+    };
+
     next();
 };
 
