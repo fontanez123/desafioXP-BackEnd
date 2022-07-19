@@ -14,6 +14,7 @@ validacaoComprar.saldo,
 validacaoComprar.quantidade,
 transacoesAtivos.comprarAtivos
 );
+
 router.post('/vender',
 validacaoIds.cliente,
 validacaoIds.ativo,
