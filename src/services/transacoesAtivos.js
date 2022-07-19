@@ -23,15 +23,16 @@ const comprarAtivos = async ({ idCliente, idAtivo, quantidade }) => {
 const venderAtivos = async ({ idCliente, idAtivo, quantidade }) => {
     const operacao = await transacoesAtivosModel.transacao(idCliente, idAtivo, tipo = 'venda', quantidade);
     const valorTotalAtivo = await valorAtivo(idAtivo, quantidade);
-    await clientesModel.aumentarSaldo(idCliente, valorTotalAtivo);
-    await ativosModel.aumentarQtdeDeAtivos(idAtivo, quantidade);
 
-   /*  const arrayClienteAtivo = await clientesAtivosModel.existeIdsIguais(idCliente, idAtivo);
+    const arrayClienteAtivo = await clientesAtivosModel.existeIdsIguais(idCliente, idAtivo);
     if(arrayClienteAtivo.length >= 1) {
-        await clientesAtivosModel.diminuiAtivosClientes(quantidade, idAtivo);    
+        await clientesAtivosModel.diminuiAtivosClientes(quantidade, idAtivo);  
+        await clientesModel.aumentarSaldo(idCliente, valorTotalAtivo);
+        await ativosModel.aumentarQtdeDeAtivos(idAtivo, quantidade);  
     } else {
-        await clientesAtivosModel.criaClientesAtivos(idCliente, idAtivo, quantidade);    
-    } */
+        return { error: { code:404, message: 'Você não possui esse ativo em sua carteira'}};   
+    }
+
     return operacao;
 };
 
