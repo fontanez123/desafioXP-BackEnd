@@ -42,9 +42,17 @@ const aumentaAtivosClientes = async(quantidade, idAtivo) => {
       );
 };
 
+const diminuiAtivosClientes = async(quantidade, idAtivo) => {
+    await connection.execute(
+        `UPDATE XPInc.clientesAtivos SET quantidade = quantidade - ?
+        WHERE idAtivo = ?;`, [quantidade, idAtivo]
+      );
+};
+
 module.exports = {
     criaClientesAtivos,
     aumentaAtivosClientes,
     existeIdsIguais,
     getClienteAtivos,
+    diminuiAtivosClientes,
 };

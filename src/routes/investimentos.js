@@ -14,5 +14,6 @@ validacaoComprar,
 validacaoQtdeAtivos,
 transacoesAtivos.comprarAtivos
 );
+router.post('/vender', transacoesAtivos.venderAtivos);
 
 module.exports = router;

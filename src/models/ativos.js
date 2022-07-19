@@ -23,8 +23,16 @@ const diminuirQtdeDeAtivos = async(id, quantidade) => {
   );
 };
 
+const aumentarQtdeDeAtivos = async(id, quantidade) => {
+  await connection.execute(
+    `UPDATE XPInc.ativos SET quantidade = quantidade + ?
+    WHERE id = ?;`, [quantidade, id]
+  );
+};
+
 module.exports = { 
     getAll,
     getById,
     diminuirQtdeDeAtivos,
+    aumentarQtdeDeAtivos,
 };
