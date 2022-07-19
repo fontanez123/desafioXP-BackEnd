@@ -13,6 +13,20 @@ const criaClientesAtivos = async(idCliente, idAtivo, quantidade ) => {
     };
 };
 
+const getClienteAtivos = async(idCliente) => {
+    const [clienteAtivos] = await connection.execute(
+      `SELECT CA.idCliente, CA.idAtivo, CA.quantidade, A.valor
+      FROM XPInc.clientesAtivos AS CA
+      INNER JOIN XPInc.ativos AS A
+      ON CA.idAtivo = A.id
+      WHERE idCliente = ?
+      ORDER BY CA.idAtivo;`, [idCliente]
+    );
+  
+    return clienteAtivos;
+  };
+  
+
 const existeIdsIguais = async (idCliente, idAtivo) => {
     const [clienteAtivo] = await connection.execute(
         'SELECT * FROM XPInc.clientesAtivos WHERE idCliente = ? AND idAtivo = ?;',
@@ -32,4 +46,5 @@ module.exports = {
     criaClientesAtivos,
     aumentaAtivosClientes,
     existeIdsIguais,
+    getClienteAtivos,
 };
