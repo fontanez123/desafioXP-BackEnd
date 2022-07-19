@@ -4,11 +4,20 @@ const transacoesConta = require('../controllers/transacoesConta');
 
 const validacaoDeposito = require('../middlewares/validacaoDeposito');
 const validacaoSaque = require('../middlewares/validacaoSaque');
+const validacaoIds = require('../middlewares/validacaoIds');
 
 const router = express.Router();
 
 router.get('/:id', clientes.getById);
-router.post('/deposito', validacaoDeposito, transacoesConta.deposito);
-router.post('/saque', validacaoSaque, transacoesConta.saque);
+router.post('/deposito',
+validacaoIds.cliente,
+validacaoDeposito,
+transacoesConta.deposito
+);
+router.post('/saque',
+validacaoIds.cliente,
+validacaoSaque,
+transacoesConta.saque
+);
 
 module.exports = router;
