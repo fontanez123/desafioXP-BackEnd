@@ -1,10 +1,10 @@
-const transacoesAtivosService = require('../services/transacoesAtivos');
+const valorAtivo = require('../utils/valorTotalAtivo');
 const clientesModel = require('../models/clientes');
 
 const validacaoComprar = async (req, res, next) => {
     const { idCliente, idAtivo, quantidade } = req.body;
     const { saldo } = await clientesModel.getById(idCliente);
-    const valorTotalAtivo = await transacoesAtivosService.valorAtivo(idAtivo, quantidade);
+    const valorTotalAtivo = await valorAtivo(idAtivo, quantidade);
 
     if(valorTotalAtivo > saldo) {
         const message = 'Saldo Insuficiente';
