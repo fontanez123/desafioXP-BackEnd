@@ -8,6 +8,19 @@ const getById = async(id) => {
   return cliente[0];
 };
 
+const novoCliente = async (nome, email, senha) => {
+  const [criar] = await connection.execute(
+    `INSERT INTO XPInc.clientes(nome, email, senha)
+    VALUES (?, ?, ?);`, [nome, email, senha]
+);
+
+  return {
+    id: criar.insertId,
+    nome,
+    email,
+  }
+};
+
 const login = async(email, senha) => {
   const [cliente] = await connection.execute(
     'SELECT email, senha FROM XPInc.clientes WHERE email = ? AND senha = ?;', [email, senha]
@@ -35,4 +48,5 @@ module.exports = {
     aumentarSaldo,
     diminuirSaldo,
     login,
+    novoCliente,
 };

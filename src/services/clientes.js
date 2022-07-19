@@ -10,7 +10,11 @@ const login = async ({ email, senha }) => {
     return { token };
 };
 
+const novoCliente = ({ nome, email, senha }) => clientesModel
+.novoCliente(nome, email, senha);
+
 module.exports = {
     getById,
     login,
+    novoCliente,
 };

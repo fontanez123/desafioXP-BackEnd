@@ -15,7 +15,14 @@ const login = async (req, res) => {
     return res.status(200).json(usuario);
 };
 
+const novoCliente = async (req, res) => {
+    const novoUsuario = await clientesService.novoCliente(req.body);
+
+    return res.status(201).json(novoUsuario);
+};
+
 module.exports = {
     getById,
     login,
+    novoCliente,
 };
