@@ -6,11 +6,15 @@ const { clienteAtivos } = require('../controllers/clientesAtivos');
 const validacaoDeposito = require('../middlewares/validacaoDeposito');
 const validacaoSaque = require('../middlewares/validacaoSaque');
 const validacaoIds = require('../middlewares/validacaoIds');
+const validacaoCliente = require('../middlewares/validacaoCliente');
 
 const router = express.Router();
 
 router.get('/:id', clientes.getById);
-router.get('/ativos/:idCliente', clienteAtivos);
+router.get('/ativos/:idCliente',
+validacaoCliente.clienteExiste,
+validacaoCliente.clientePossuiAtivos,
+clienteAtivos);
 router.post('/deposito',
 validacaoIds.cliente,
 validacaoDeposito,
