@@ -7,20 +7,29 @@ const validacaoDeposito = require('../middlewares/validacaoDeposito');
 const validacaoSaque = require('../middlewares/validacaoSaque');
 const validacaoIds = require('../middlewares/validacaoIds');
 const validacaoCliente = require('../middlewares/validacaoCliente');
+const validacaoCriarNovoCliente = require('../middlewares/validacaoCriarNovoCliente');
 
 const router = express.Router();
 
-router.post('/', clientes.novoCliente);
+router.post('/',
+validacaoCriarNovoCliente.nome,
+validacaoCriarNovoCliente.senha,
+validacaoCriarNovoCliente.email,
+clientes.novoCliente);
+
 router.get('/:id', clientes.getById);
+
 router.get('/ativos/:idCliente',
 validacaoCliente.clienteExiste,
 validacaoCliente.clientePossuiAtivos,
 clienteAtivos);
+
 router.post('/deposito',
 validacaoIds.cliente,
 validacaoDeposito,
 transacoesConta.deposito
 );
+
 router.post('/saque',
 validacaoIds.cliente,
 validacaoSaque,
