@@ -1,5 +1,13 @@
-const cliente = (req, res, next) => {
+const clientesModel = require('../models/clientes');
+
+const cliente = async (req, res, next) => {
   const { idCliente } = req.body;
+  const clienteExiste = await clientesModel.getById(idCliente);
+
+  if (!clienteExiste) {
+    const message = 'Cliente não encontrado';
+    return res.status(404).json({ message });
+  }
 
   if (!idCliente || idCliente <= 0) {
     const message = 'O campo idCliente é obrigatório ou precisa ser um número maior que 0';
