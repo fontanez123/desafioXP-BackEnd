@@ -4,10 +4,15 @@ const ativosModel = require('../models/ativos');
 
 const Saldo = async (req, res, next) => {
   const { idCliente, idAtivo, quantidade } = req.body;
-  const { saldo } = await clientesModel.getById(idCliente);
+  const cliente = await clientesModel.getById(idCliente);
   const valorTotalAtivo = await valorAtivo(idAtivo, quantidade);
 
-  if (valorTotalAtivo > saldo) {
+  if (!cliente) {
+    const message = 'Cliente não encontrado';
+    return res.status(404).json({ message });
+  }
+
+  if (valorTotalAtivo > cliente.saldo) {
     const message = 'Saldo Insuficiente';
     return res.status(400).json({ message });
   }

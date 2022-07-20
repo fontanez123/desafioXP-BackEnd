@@ -11,6 +11,16 @@ const clienteExiste = async (req, res, next) => {
   return next();
 };
 
+const clienteExisteBody = async (req, res, next) => {
+  const { idCliente } = req.body;
+  const cliente = await clientesService.getById(idCliente);
+  const message = 'Cliente não encontrado';
+
+  if (!cliente) return res.status(404).json({ message });
+
+  return next();
+};
+
 const clientePossuiAtivos = async (req, res, next) => {
   const { idCliente } = req.params;
   const carteiraCliente = await clientesAtivosService.clienteAtivos(idCliente);
@@ -26,5 +36,6 @@ const clientePossuiAtivos = async (req, res, next) => {
 
 module.exports = {
   clienteExiste,
+  clienteExisteBody,
   clientePossuiAtivos,
 };
