@@ -7,19 +7,21 @@ const validacaoIds = require('../middlewares/validacaoIds');
 
 const router = express.Router();
 
-router.post('/comprar',
-validacaoIds.cliente,
-validacaoIds.ativo,
-validacaoComprar.saldo,
-validacaoComprar.quantidade,
-transacoesAtivos.comprarAtivos
+router.post(
+  '/comprar',
+  validacaoIds.cliente,
+  validacaoIds.ativo,
+  validacaoComprar.Saldo,
+  validacaoComprar.Quantidade,
+  transacoesAtivos.comprarAtivos,
 );
 
-router.post('/vender',
-validacaoIds.cliente,
-validacaoIds.ativo,
-validacaoVender.quantidade,
-transacoesAtivos.venderAtivos
+router.post(
+  '/vender',
+  validacaoIds.cliente,
+  validacaoIds.ativo,
+  validacaoVender.Quantidade,
+  transacoesAtivos.venderAtivos,
 );
 
 module.exports = router;

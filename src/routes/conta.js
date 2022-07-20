@@ -11,30 +11,36 @@ const validacaoCriarNovoCliente = require('../middlewares/validacaoCriarNovoClie
 
 const router = express.Router();
 
-router.post('/',
-validacaoCriarNovoCliente.nome,
-validacaoCriarNovoCliente.senha,
-validacaoCriarNovoCliente.email,
-validacaoCriarNovoCliente.clienteExiste,
-clientes.novoCliente);
+router.post(
+  '/',
+  validacaoCriarNovoCliente.Nome,
+  validacaoCriarNovoCliente.Senha,
+  validacaoCriarNovoCliente.Email,
+  validacaoCriarNovoCliente.clienteExiste,
+  clientes.novoCliente,
+);
 
 router.get('/:id', clientes.getById);
 
-router.get('/ativos/:idCliente',
-validacaoCliente.clienteExiste,
-validacaoCliente.clientePossuiAtivos,
-clienteAtivos);
-
-router.post('/deposito',
-validacaoIds.cliente,
-validacaoDeposito,
-transacoesConta.deposito
+router.get(
+  '/ativos/:idCliente',
+  validacaoCliente.clienteExiste,
+  validacaoCliente.clientePossuiAtivos,
+  clienteAtivos,
 );
 
-router.post('/saque',
-validacaoIds.cliente,
-validacaoSaque,
-transacoesConta.saque
+router.post(
+  '/deposito',
+  validacaoIds.cliente,
+  validacaoDeposito,
+  transacoesConta.deposito,
+);
+
+router.post(
+  '/saque',
+  validacaoIds.cliente,
+  validacaoSaque,
+  transacoesConta.saque,
 );
 
 module.exports = router;

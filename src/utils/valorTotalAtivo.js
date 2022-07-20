@@ -1,10 +1,10 @@
 const ativosModel = require('../models/ativos');
 
 const valorAtivo = async (idAtivo, quantidade) => {
-    const ativo = await ativosModel.getById(idAtivo);
-    const valorTotalAtivo = +ativo.valor * quantidade;
+  const ativo = await ativosModel.getById(idAtivo);
+  const valorTotalAtivo = +ativo.valor * quantidade;
 
-    return valorTotalAtivo;
+  return valorTotalAtivo;
 };
 
 module.exports = valorAtivo;
