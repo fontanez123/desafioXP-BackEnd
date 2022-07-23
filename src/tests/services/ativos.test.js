@@ -3,7 +3,7 @@ const { expect } = require('chai');
 const connection = require('../../models/connection');
 const ativosService = require('../../services/ativos');
 
-describe('Testando a camada Model de Ativos', () => {
+describe('Testando a camada Service de Ativos', () => {
 
   describe('Testando a função getAll', () => {
     before(async () => {
@@ -37,25 +37,7 @@ describe('Testando a camada Model de Ativos', () => {
   });
 
 
-  describe('Testando a função getById', () => {
-    before(async () => {
-      const execute = [{}];
-  
-      sinon.stub(connection, 'execute').resolves(execute);
-    });
-  
-    after(async () => {
-      connection.execute.restore();
-    });
-  
-    describe('Quando não existe um ativo com o ID informado', () => {
-      it('Retorna undefined', async () => {
-        const result = await ativosService.getById();
-        expect(result).to.be.equal(undefined);
-      });
-    });
-  
-    describe('Quando existe um ativo com o ID informado', () => {  
+  describe('Testando a função getById', () => {   
       before(async () => {
         sinon.stub(ativosService, 'getById')
           .resolves(
@@ -81,6 +63,5 @@ describe('Testando a camada Model de Ativos', () => {
         const result = await ativosService.getById(1);  
         expect(result).to.include.all.keys('id', 'nome', 'quantidade', 'valor');
       });
-    });
   });
 });
