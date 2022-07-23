@@ -1,6 +1,5 @@
 const sinon = require('sinon');
 const { expect } = require('chai');
-const connection = require('../../models/connection');
 const clientesModel = require('../../models/clientes');
 
 describe('Testando a camada Model de Clientes', () => {  
