@@ -2,6 +2,7 @@ const sinon = require('sinon');
 const { expect } = require('chai');
 const connection = require('../../models/connection');
 const ativosService = require('../../services/ativos');
+const ativosModel = require('../../models/ativos');
 
 describe('Testando a camada Service de Ativos', () => {
 
@@ -39,14 +40,14 @@ describe('Testando a camada Service de Ativos', () => {
 
   describe('Testando a função getById', () => {   
       before(async () => {
-        sinon.stub(ativosService, 'getById')
+        sinon.stub(ativosModel, 'getById')
           .resolves(
             { id: 1, nome: 'VALE', quantidade: 186, valor: '350.20' }
           );
       });
   
       after(() => {
-        ativosService.getById.restore();
+        ativosModel.getById.restore();
       });
   
       it('Retorna um objeto', async () => {
