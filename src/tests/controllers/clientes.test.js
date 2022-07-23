@@ -42,5 +42,38 @@ describe('Testando a camada Controller de Clientes', () => {
         await clientesController.getById(req, res);      
         expect(res.json.calledWith(sinon.match.object)).to.be.equal(true);
     });
-  });      
+  });  
+  
+  describe('Testando a função login', () => {  
+    const res = {};
+    const req = {};
+
+    const result = {
+        token: '123456'
+    };
+
+    before(() => {  
+        res.status = sinon.stub()
+          .returns(res);
+        res.json = sinon.stub()
+          .returns();
+
+        sinon.stub(clientesService, 'login')
+            .resolves(result);
+      });
+
+      after(() => {
+        clientesService.login.restore();
+      });
+
+      it('É chamado o status com o código 200', async () => {
+        await clientesController.login(req, res);      
+        expect(res.status.calledWith(200)).to.be.equal(true);
+      });
+
+      it('É chamado o método "json" passando um objeto', async () => {
+        await clientesController.login(req, res);      
+        expect(res.json.calledWith(sinon.match.object)).to.be.equal(true);
+    });
+  });  
 });
