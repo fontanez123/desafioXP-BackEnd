@@ -13,8 +13,4 @@ app.use('/conta', contaRouter);
 app.use('/investimentos', investimentoRouter);
 app.use('/login', loginRouter);
 
-app.get('/', (_req, res) => {
-  res.send('testando');
-});
-
 module.exports = app;

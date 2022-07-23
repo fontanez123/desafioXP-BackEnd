@@ -8,6 +8,7 @@ const validacaoSaque = require('../middlewares/validacaoSaque');
 const validacaoIds = require('../middlewares/validacaoIds');
 const validacaoCliente = require('../middlewares/validacaoCliente');
 const validacaoCriarNovoCliente = require('../middlewares/validacaoCriarNovoCliente');
+const { auth, authIdCliente } = require('../middlewares/auth');
 
 const router = express.Router();
 
@@ -31,6 +32,8 @@ router.get(
 
 router.post(
   '/deposito',
+  auth,
+  authIdCliente,
   validacaoIds.cliente,
   validacaoDeposito,
   transacoesConta.deposito,
@@ -38,6 +41,8 @@ router.post(
 
 router.post(
   '/saque',
+  auth,
+  authIdCliente,
   validacaoIds.cliente,
   validacaoSaque,
   transacoesConta.saque,
