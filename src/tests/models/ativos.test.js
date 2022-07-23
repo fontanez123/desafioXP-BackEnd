@@ -37,25 +37,7 @@ describe('Testando a camada Model de Ativos', () => {
   });
 
 
-  describe('Testando a função getById', () => {
-    before(async () => {
-      const execute = [{}];
-  
-      sinon.stub(connection, 'execute').resolves(execute);
-    });
-  
-    after(async () => {
-      connection.execute.restore();
-    });
-  
-    describe('Quando não existe um ativo com o ID informado', () => {
-      it('Retorna undefined', async () => {
-        const result = await ativosModel.getById();
-        expect(result).to.be.equal(undefined);
-      });
-    });
-  
-    describe('Quando existe um ativo com o ID informado', () => {  
+  describe('Testando a função getById', () => {   
       before(async () => {
         sinon.stub(ativosModel, 'getById')
           .resolves(
@@ -81,6 +63,5 @@ describe('Testando a camada Model de Ativos', () => {
         const result = await ativosModel.getById(1);  
         expect(result).to.include.all.keys('id', 'nome', 'quantidade', 'valor');
       });
-    });
   });
 });
