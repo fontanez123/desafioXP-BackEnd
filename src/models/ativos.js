@@ -2,7 +2,7 @@ const connection = require('./connection');
 
 const getAll = async () => {
   const [ativos] = await connection.execute(
-    'SELECT * FROM XPInc.ativos;',
+    'SELECT * FROM ativos;',
   );
 
   return ativos;
