@@ -1,7 +1,7 @@
 const connection = require('./connection');
 
 const criaClientesAtivos = async (idCliente, idAtivo, quantidade) => {
-  await connection.execute(`INSERT INTO XPInc.clientesAtivos(idCliente, idAtivo, quantidade)
+  await connection.execute(`INSERT INTO clientesAtivos(idCliente, idAtivo, quantidade)
         VALUES (?, ?, ?);`, [idCliente, idAtivo, quantidade]);
 
   return {
@@ -13,8 +13,8 @@ const criaClientesAtivos = async (idCliente, idAtivo, quantidade) => {
 
 const getClienteAtivos = async (idCliente) => {
   const [clienteAtivos] = await connection.execute(`SELECT CA.idCliente, CA.idAtivo, CA.quantidade, A.valor
-      FROM XPInc.clientesAtivos AS CA
-      INNER JOIN XPInc.ativos AS A
+      FROM clientesAtivos AS CA
+      INNER JOIN ativos AS A
       ON CA.idAtivo = A.id
       WHERE idCliente = ?
       ORDER BY CA.idAtivo;`, [idCliente]);
@@ -24,7 +24,7 @@ const getClienteAtivos = async (idCliente) => {
 
 const existeIdsIguais = async (idCliente, idAtivo) => {
   const [clienteAtivo] = await connection.execute(
-    'SELECT * FROM XPInc.clientesAtivos WHERE idCliente = ? AND idAtivo = ?;',
+    'SELECT * FROM clientesAtivos WHERE idCliente = ? AND idAtivo = ?;',
     [idCliente, idAtivo],
   );
 
@@ -32,12 +32,12 @@ const existeIdsIguais = async (idCliente, idAtivo) => {
 };
 
 const aumentaAtivosClientes = async (quantidade, idAtivo) => {
-  await connection.execute(`UPDATE XPInc.clientesAtivos SET quantidade = quantidade + ?
+  await connection.execute(`UPDATE clientesAtivos SET quantidade = quantidade + ?
         WHERE idAtivo = ?;`, [quantidade, idAtivo]);
 };
 
 const diminuiAtivosClientes = async (quantidade, idAtivo) => {
-  await connection.execute(`UPDATE XPInc.clientesAtivos SET quantidade = quantidade - ?
+  await connection.execute(`UPDATE clientesAtivos SET quantidade = quantidade - ?
         WHERE idAtivo = ?;`, [quantidade, idAtivo]);
 };
 

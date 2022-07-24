@@ -9,18 +9,18 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const [ativo] = await connection.execute('SELECT * FROM XPInc.ativos WHERE id = ?;', [id]);
+  const [ativo] = await connection.execute('SELECT * FROM ativos WHERE id = ?;', [id]);
 
   return ativo[0];
 };
 
 const diminuirQtdeDeAtivos = async (id, quantidade) => {
-  await connection.execute(`UPDATE XPInc.ativos SET quantidade = quantidade - ?
+  await connection.execute(`UPDATE ativos SET quantidade = quantidade - ?
     WHERE id = ?;`, [quantidade, id]);
 };
 
 const aumentarQtdeDeAtivos = async (id, quantidade) => {
-  await connection.execute(`UPDATE XPInc.ativos SET quantidade = quantidade + ?
+  await connection.execute(`UPDATE ativos SET quantidade = quantidade + ?
     WHERE id = ?;`, [quantidade, id]);
 };
 
