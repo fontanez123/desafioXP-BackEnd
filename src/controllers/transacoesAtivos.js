@@ -3,7 +3,7 @@ const transacoesAtivosService = require('../services/transacoesAtivos');
 const comprarAtivos = async (req, res) => {
   const operacao = await transacoesAtivosService.comprarAtivos(req.body);
 
-  return res.status(201).json(operacao);
+  return res.status(200).json(operacao);
 };
 
 const venderAtivos = async (req, res) => {
@@ -14,7 +14,7 @@ const venderAtivos = async (req, res) => {
       .json({ message: operacao.error.message });
   }
 
-  return res.status(201).json(operacao);
+  return res.status(200).json(operacao);
 };
 
 module.exports = {
