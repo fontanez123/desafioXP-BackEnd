@@ -9,11 +9,26 @@ Aqui você vai encontrar todos os detalhes de como desenvolvi esse projeto! #vqv
 - [Requisições](#requisições)
 - [Considerações Importantes](#considerações-importantes)
 
+---
+
 ## Tomadas de decisão
 <details>
 <summary><strong>⚠️ Pontos importantes</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+1. Gerenciamento do tempo: com o intuito de dar meu melhor nesse desáfio, pois além dele,
+eu trabalho para duas empresas e tenho meu deveres com a Trybe.
+
+2. Após leitura do desafio, decidi usar JavaScript com Node.js e Express.
+
+3. Pensando em foco no cliente, performance e no negócio:
+- Para modelagem do banco de dados implementei os conceitos de normalização e crei meu
+banco de dados com MySQL.
+- Utilizei Arquitetura de Software MSC(Model, Service, Controller), pois ao dividir minha aplicação
+em camadas facilita a manutenção, a adição de novas funcionalidades e um código mais organizado e limpo.
+- Utilizei Arquitetura Web REST.
+- Implementei testes para alguns endpoints.
+
+---
 
  <br />
 </details>
@@ -24,7 +39,14 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>👨🏽‍💻 Via Deploy</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+1. Copie a `URL`
+- https://lazaro-kabib-desafioxp-backend.herokuapp.com
+
+2. Utilize alguma plataforma de API e rode os endpoints
+- [Exemplo de requisição](https://prnt.sc/3CVRpyTPYx7f)
+- Obs: confira na seção requisições os endpoints
+
+---
 
  <br />
 </details>
@@ -32,7 +54,35 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>👩‍ Via localmente</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+1. Clone o repositório
+- `git clone git@github.com:fontanez123/desafioXP-BackEnd.git`
+- Entre na pasta: `cd desafioXP-BackEnd`
+
+2. Instale as dependências
+- `npm install`
+
+3. Crie e configure o arquivo .env
+```text
+MYSQL_HOST=localhost
+MYSQL_USER=seu-usuário
+MYSQL_PASSWORD=seu-password
+MYSQL_DATABASE=XPInc
+PORT=3306
+JWT_SECRET=senha-secreta
+```
+
+4. Criando banco de dados
+- Abra o arquivo `XPInc.sql` e copie a query para criação do banco de dados
+- Rode a query no MySQL Workbench
+
+5. Rode a aplicação
+- `npm start`
+
+6. Utilize alguma plataforma de API e rode os endpoints
+- [Exemplo de requisição](https://prnt.sc/kT8SD3439S0o)
+- Obs: confira na seção requisições os endpoints
+
+---
 
  <br />
  </details>
@@ -40,7 +90,14 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>👩‍🔧 Testes</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+1. Nesse projeto fiz a cobertura de testes e para rodá-los bastar usar os comandos
+abaixo:
+
+- Testando camada Models: `npm run test:models`
+- Testando camada Services: `npm run test:services`
+- Testando camada Controllers: `npm run test:controllers`
+
+---
 
  <br />
  </details>
@@ -272,3 +329,12 @@ blblabla blblabla blblabla blblabla blblabla
 </details>
 
 ## Considerações Importantes
+
+Agradeço a oportunidade de participar desse processo seletivo. Com ele conseguir
+praticar os conteúdos aprendido durante o curso e também adquirir novos aprendizados.
+
+Melhorias para o futuro:
+- Refatorar algumas partes do meu código.
+- Melhorar a cobertura de testes.
+
+---
