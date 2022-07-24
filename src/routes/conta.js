@@ -33,8 +33,8 @@ router.get(
 router.post(
   '/deposito',
   auth,
-  authIdCliente,
   validacaoIds.cliente,
+  authIdCliente,
   validacaoDeposito,
   transacoesConta.deposito,
 );
@@ -42,8 +42,8 @@ router.post(
 router.post(
   '/saque',
   auth,
-  authIdCliente,
   validacaoIds.cliente,
+  authIdCliente,
   validacaoSaque,
   transacoesConta.saque,
 );

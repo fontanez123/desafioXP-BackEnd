@@ -11,8 +11,8 @@ const router = express.Router();
 router.post(
   '/comprar',
   auth,
-  authIdCliente,
   validacaoIds.cliente,
+  authIdCliente,
   validacaoIds.ativo,
   validacaoComprar.Saldo,
   validacaoComprar.Quantidade,
@@ -22,8 +22,8 @@ router.post(
 router.post(
   '/vender',
   auth,
-  authIdCliente,
   validacaoIds.cliente,
+  authIdCliente,
   validacaoIds.ativo,
   validacaoVender.Quantidade,
   transacoesAtivos.venderAtivos,
