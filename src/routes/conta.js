@@ -35,11 +35,38 @@ const router = express.Router();
  *           nome:
  *             type: string
  *           saldo:
- *             type: number
+ *             type: string
  *         example:
  *           id: 4
  *           nome: Lázaro Kabib
  *           saldo: 15000.09
+ */
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       CarteiraAtivos:
+ *         type: object
+ *         required:
+ *           -idCliente
+ *           -idAtivo
+ *           -quantidade
+ *           -valor
+ *         properties:
+ *           idCliente:
+ *             type: number
+ *           idAtivo:
+ *             type: number
+ *           quantidade:
+ *             type: number
+ *           valor:
+ *             type: string
+ *         example:
+ *           idCliente: 4
+ *           idAtivo: 4
+ *           quantidade: 50
+ *           valor: 350.20
  */
 
 router.post(
@@ -72,6 +99,25 @@ router.post(
  */
 router.get('/:id', clientes.getById);
 
+/**
+ * @swagger
+ *   /conta/ativos/{id}:
+ *     get:
+ *       tags: [Conta]
+ *       description: Endpoint que retorna os dados da carteira de ativos do cliente pelo id
+ *       parameters:
+ *         - in: path
+ *           name: id
+ *           type: number
+ *           required: true
+ *       responses:
+ *         200:
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: array
+ *                 $ref: '#/components/schemas/CarteiraAtivos'
+ */
 router.get(
   '/ativos/:idCliente',
   validacaoCliente.clienteExiste,
