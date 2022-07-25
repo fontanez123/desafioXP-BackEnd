@@ -4,7 +4,7 @@
   "description": "Iniciando projeto",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./src",
+    "start": "node ./src",
     "test:models": "mocha ./src/tests/models/**/*$NAME*.test.js --exit",
     "test:services": "mocha ./src/tests/services/**/*$NAME*.test.js --exit",
     "test:controllers": "mocha ./src/tests/controllers/**/*$NAME*.test.js --exit"
