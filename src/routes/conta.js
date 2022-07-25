@@ -69,6 +69,48 @@ const router = express.Router();
  *           valor: 350.20
  */
 
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       TransacaoBody:
+ *         type: object
+ *         required:
+ *           -idCliente
+ *           -valor
+ *         properties:
+ *           idCliente:
+ *             type: number
+ *           valor:
+ *             type: number
+ *         example:
+ *           idCliente: 4
+ *           valor: 10000
+ */
+
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       Deposito:
+ *         type: object
+ *         required:
+ *           -idCliente
+ *           -tipo
+ *           -valor
+ *         properties:
+ *           idCliente:
+ *             type: number
+ *           tipo:
+ *             type: string
+ *           valor:
+ *             type: number
+ *         example:
+ *           idCliente: 4
+ *           tipo: deposito
+ *           valor: 10000
+ */
+
 router.post(
   '/',
   validacaoCriarNovoCliente.Nome,
@@ -125,6 +167,29 @@ router.get(
   clienteAtivos,
 );
 
+/**
+ * @swagger
+ *   /conta/deposito:
+ *     post:
+ *       tags: [Conta]
+ *       description: Endpoint que faz deposito e atualiza saldo do cliente
+ *       security:
+ *         - bearerAuth: []
+ *       requestBody:
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               $ref: '#/components/schemas/TransacaoBody'
+ *       responses:
+ *         201:
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 $ref: '#/components/schemas/Deposito'
+ */
 router.post(
   '/deposito',
   auth,
