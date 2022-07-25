@@ -5,6 +5,7 @@ Aqui você vai encontrar todos os detalhes de como desenvolvi esse projeto! #vqv
 ## Sumário
 
 - [Tomadas de decisão](#tomadas-de-decisão)
+- [Oque foi desenvolvido](#oque-foi-desenvolvido)
 - [Como rodar o projeto](#como-rodar-o-projeto)
 - [Requisições](#requisições)
 - [Considerações Importantes](#considerações-importantes)
@@ -33,6 +34,24 @@ em camadas facilita a manutenção, a adição de novas funcionalidades e um có
  <br />
 </details>
 
+## Oque foi desenvolvido
+### Requisitos Mínimos Gerais
+- [x] - POST (/investimentos/comprar)
+- [x] - POST (/investimentos/vender)
+- [x] - GET BY CLIENT (/ativos/{idCliente})
+- [x] - GET BY ASSETS (/ativos/{idCliente})
+- [x] - POST (/conta/deposito)
+- [x] - POST (/conta/saque)
+- [x] - GET (/conta/{idCliente})
+
+----
+### Requisitos Adicionais
+- [x] - Testes unitários
+- [x] - Deploy da API
+- [x] - Autenticação e autorização JWT
+- [ ] - Documentação da API (Swagger)
+
+----
 
 ## Como rodar o projeto
 
@@ -299,7 +318,45 @@ abaixo:
 <details>
 <summary><strong>GET /ativos</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+- O endpoint é acessível através do URL `/ativos`;
+- Esse endpoint mostra todos os ativos disponíveis na corretora
+- O resultado é conforme exibido abaixo:
+```json
+[
+    {
+        "id": 4,
+        "nome": "VALE",
+        "quantidade": 150,
+        "valor": "350.20"
+    },
+    {
+        "id": 14,
+        "nome": "PETROBRAS",
+        "quantidade": 380,
+        "valor": "500.00"
+    },
+    {
+        "id": 24,
+        "nome": "MAGAZINE LUIZA",
+        "quantidade": 150,
+        "valor": "250.70"
+    },
+    {
+        "id": 34,
+        "nome": "LOJAS RENNER",
+        "quantidade": 249,
+        "valor": "321.30"
+    },
+    {
+        "id": 44,
+        "nome": "HAPVIDA",
+        "quantidade": 334,
+        "valor": "446.00"
+    }
+]
+```
+  
+  ---
 
  <br />
 </details>
@@ -307,7 +364,22 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>GET /ativos/{idAtivo}</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+- O endpoint é acessível através do URL `/ativos/:idAtivo`;
+- Esse endpoint me traz id, nome, quantidade e valor do Ativo disponível na corretora pelo id
+- O resultado é conforme exibido abaixo:
+```json
+{
+    "id": 4,
+    "nome": "VALE",
+    "quantidade": 150,
+    "valor": "350.20"
+}
+```
+
+ **[Validações]**
+  - Se o idAtivo informado existe um ativo com o mesmo id.
+  
+  ---
 
  <br />
 </details>
@@ -315,7 +387,35 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>POST /investimentos/comprar</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+- O endpoint é acessível através do URL `/investimentos/comprar`;
+- Esse endpoint insere uma transação de ativos na tabela trasancoesAtivos, atualiza o saldo do cliente, atualiza a carteira de ativos do cliente
+e atualiza a quantidade de ativos disponíveis na corretora.
+- O resultado é conforme exibido abaixo:
+```json
+{
+    "idCliente": 4,
+    "idAtivo": 4,
+    "tipo": "compra",
+    "quantidade": 10
+}
+```
+
+ **[Validações]**
+  - Se o token de autenticação existe.
+  - Se o token de autenticação expirou ou é inválido.
+  - Se o valor da compra é maior que o saldo do cliente.
+  - Se a quantidade comprada é maior que a quantidade disponível na corretora.
+  - Se o cliente que fez o login é o mesmo que está realizando a compra do ativo.
+  - Se o idCliente do req.body não está vazio ou é maior que 0.
+  - Se o idCliente do req.body é um número.
+  - Se existe um cliente com o mesmo idCliente passado no req.body.
+  - Se o idAtivo do req.body não está vazio ou é maior que 0.
+  - Se o idAtivo do req.body é um número.
+  - Se existe um ativo com o mesmo idAtivo passado no req.body.
+  - Se a quantidade do req.body é um número.
+  - Se a quantidade do req.body é maior que 0.
+  
+  ---
 
  <br />
 </details>
@@ -323,7 +423,34 @@ blblabla blblabla blblabla blblabla blblabla
 <details>
 <summary><strong>POST /investimentos/vender</strong></summary><br />
 
-blblabla blblabla blblabla blblabla blblabla
+- O endpoint é acessível através do URL `/investimentos/vender`;
+- Esse endpoint insere uma transação de ativos na tabela trasancoesAtivos, atualiza o saldo do cliente, atualiza a carteira de ativos do cliente
+e atualiza a quantidade de ativos disponíveis na corretora.
+- O resultado é conforme exibido abaixo:
+```json
+{
+    "idCliente": 4,
+    "idAtivo": 4,
+    "tipo": "venda",
+    "quantidade": 30
+}
+```
+
+ **[Validações]**
+  - Se o token de autenticação existe.
+  - Se o token de autenticação expirou ou é inválido.
+  - Se a quantidade vendida é maior que a quantidade disponível na carteira de ativos do cliente.
+  - Se o cliente que fez o login é o mesmo que está realizando a compra do ativo.
+  - Se o idCliente do req.body não está vazio ou é maior que 0.
+  - Se o idCliente do req.body é um número.
+  - Se existe um cliente com o mesmo idCliente passado no req.body.
+  - Se o idAtivo do req.body não está vazio ou é maior que 0.
+  - Se o idAtivo do req.body é um número.
+  - Se existe um ativo com o mesmo idAtivo passado no req.body.
+  - Se a quantidade do req.body é um número.
+  - Se a quantidade do req.body é maior que 0.
+  
+  ---
 
  <br />
 </details>
@@ -336,5 +463,6 @@ praticar os conteúdos aprendido durante o curso e também adquirir novos aprend
 Melhorias para o futuro:
 - Refatorar algumas partes do meu código.
 - Melhorar a cobertura de testes.
+- Documentação swagger
 
 ---
