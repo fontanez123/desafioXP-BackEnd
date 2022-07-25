@@ -39,7 +39,7 @@ em camadas facilita a manutenção, a adição de novas funcionalidades e um có
 - [x] - POST (/investimentos/comprar)
 - [x] - POST (/investimentos/vender)
 - [x] - GET BY CLIENT (/ativos/{idCliente})
-- [x] - GET BY ASSETS (/ativos/{idCliente})
+- [x] - GET BY ASSETS (/ativos/{idAtivo})
 - [x] - POST (/conta/deposito)
 - [x] - POST (/conta/saque)
 - [x] - GET (/conta/{idCliente})
