@@ -24,6 +24,7 @@ eu trabalho para duas empresas e tenho meu deveres com a Trybe.
 3. Pensando em foco no cliente, performance e no negócio:
 - Para modelagem do banco de dados implementei os conceitos de normalização e crei meu
 banco de dados com MySQL.
+![Diagrama de ER e Entidades](https://media.discordapp.net/attachments/836688004294377493/999840875930726440/unknown.png?width=960&height=461)
 - Utilizei Arquitetura de Software MSC(Model, Service, Controller), pois ao dividir minha aplicação
 em camadas facilita a manutenção, a adição de novas funcionalidades e um código mais organizado e limpo.
 - Utilizei Arquitetura Web REST.
